@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { IProduct, PRODUCTS } from '../models';
+import { Delay, IProduct, PRODUCTS } from '../models';
 
 @Injectable()
 export class ProductsService {
-  getAll(): ReadonlyArray<IProduct> {
-    return PRODUCTS;
+  getAll({ delay = 0 }: Delay): Promise<ReadonlyArray<IProduct>> {
+    return new Promise<ReadonlyArray<IProduct>>((resolve) => {
+      setTimeout(() => {
+        resolve(PRODUCTS);
+      }, delay);
+    });
   }
 }
