@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ApiProductModel, Delay } from '../models';
+import { ApiProductModel, GetProductsDto } from '../models';
 
 @Controller('products')
 @ApiTags('Products - Controller')
@@ -10,7 +10,7 @@ export class ProductsController {
 
   @Get()
   @ApiResponse({ isArray: true, type: ApiProductModel })
-  getAll(@Query() query: Delay) {
+  getAll(@Query() query: GetProductsDto) {
     return this._productsService.getAll(query);
   }
 }
